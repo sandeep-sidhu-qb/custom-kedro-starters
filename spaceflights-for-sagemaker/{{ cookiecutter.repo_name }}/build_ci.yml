@@ -1,0 +1,9 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      
+      - pip3 install -r ./src/requirements.txt
+      - kedro test

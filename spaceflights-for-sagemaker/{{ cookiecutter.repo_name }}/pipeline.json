@@ -1,0 +1,39 @@
+{
+   "Version":"2020-12-01",
+   "Metadata":{},
+   "Parameters":[],
+   "PipelineExperimentConfig":{
+      "ExperimentName":{
+         "Get":"Execution.PipelineName"
+      },
+      "TrialName":{
+         "Get":"Execution.PipelineExecutionId"
+      }
+   },
+   "Steps":[
+      {
+         "Name":"Kedro-Pipeline",
+         "Type":"Processing",
+         "Arguments":{
+            "ProcessingResources":{
+               "ClusterConfig":{
+                  "InstanceType":"ml.m5.xlarge",
+                  "InstanceCount":1,
+                  "VolumeSizeInGB":30
+               }
+            },
+            "AppSpecification":{
+               "ImageUri": "INSERT_IMAGE_URI_HERE",
+               "ContainerEntrypoint":[
+                  "kedro",
+                  "run"
+               ]
+            },
+            "RoleArn": "INSERT_ROLE_HERE",
+            "StoppingCondition":{
+               "MaxRuntimeInSeconds":1200
+            }
+         }
+      }
+   ]
+}
